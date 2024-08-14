@@ -92,5 +92,3 @@ export const getVerse = async (translation = "deu_sch") => {
   displayMessage = `${getRandomChapter.book.name} ${randomChapter}:${randomVerse.number} - ${randomVerse.content[0]}`;
   return displayMessage;
 };
-
-getVerse();
