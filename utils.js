@@ -95,7 +95,7 @@ export const getVerse = async (translation = "deu_sch") => {
   return displayMessage;
 };
 
-export const getRandomPsalm = async (translation = "deu_l12", book = "PSA") => {
+export const getRandomPsalm = async (translation = "deu_sch", book = "PSA") => {
   const randomChapter = randomNumber(150);
 
   const PsalmData = await fetch(
