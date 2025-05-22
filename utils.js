@@ -95,7 +95,7 @@ export const getVerse = async (translation = "deu_sch") => {
   return displayMessage;
 };
 
-export const getRandomPsalm = async (translation = "deu_sch", book = "PSA") => {
+export const getRandomPsalm = async (translation = "deu_l12", book = "PSA") => {
   const randomChapter = randomNumber(150);
 
   const PsalmData = await fetch(
@@ -105,7 +105,7 @@ export const getRandomPsalm = async (translation = "deu_sch", book = "PSA") => {
   let displayMessage = `${PsalmData.book.commonName} ${randomChapter} `;
 
   for (const verse of PsalmData.chapter.content) {
-    displayMessage += `[${verse.number}]${verse.content.join(" ")} `;
+    displayMessage += `[${verse.number}] ${verse.content.join(" ")} `;
   }
 
   return displayMessage;
