@@ -25,6 +25,14 @@ const VERSE_COMMAND = {
   integration_types: [0, 1],
   contexts: [0, 1, 2],
 };
+// Verse command
+const PSALM_COMMAND = {
+  name: "psalm",
+  description: "displays a psalm",
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
 
 // Simple test command
 const TEST_COMMAND = {
@@ -35,6 +43,6 @@ const TEST_COMMAND = {
   contexts: [0, 1, 2],
 };
 
-const ALL_COMMANDS = [TEST_COMMAND, VERSE_COMMAND];
+const ALL_COMMANDS = [TEST_COMMAND, VERSE_COMMAND, VERSE_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

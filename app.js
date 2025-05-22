@@ -5,7 +5,7 @@ import {
   InteractionResponseType,
   verifyKeyMiddleware,
 } from "discord-interactions";
-import { getRandomEmoji, getVerse } from "./utils.js";
+import { getRandomEmoji, getVerse, getRandomPsalm } from "./utils.js";
 
 // Create an express app
 const app = express();
@@ -44,6 +44,16 @@ app.post(
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
             content: verse,
+          },
+        });
+      }
+
+      if (name === "psalm") {
+        const psalm = await getRandomPsalm();
+        return res.send({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            content: psalm,
           },
         });
       }

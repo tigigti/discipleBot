@@ -92,3 +92,19 @@ export const getVerse = async (translation = "deu_sch") => {
   displayMessage = `${getRandomChapter.book.name} ${randomChapter}:${randomVerse.number} - ${randomVerse.content[0]}`;
   return displayMessage;
 };
+
+export const getRandomPsalm = async (translation = "deu_sch", book = "PSA") => {
+  const randomChapter = randomNumber(150);
+
+  const PsalmData = await fetch(
+    `https://bible.helloao.org/api/${translation}/${book}/${randomChapter}`
+  ).then((res) => res.json());
+
+  let displayMessage = `${PsalmData.book.commonName} ${randomChapter}:`;
+
+  for (const verse of PsalmData.chapter.content) {
+    displayMessage += `[${verse.number}]${verse.content.join(" ")} `;
+  }
+
+  return displayMessage;
+};
