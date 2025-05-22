@@ -11,7 +11,7 @@ export async function DiscordRequest(endpoint, options) {
       Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
       "Content-Type": "application/json; charset=UTF-8",
       "User-Agent":
-        "DiscordBot (https://github.com/discord/discord-example-app, 1.0.0)",
+        "DiscordBot (https://github.com/discord/discord-example-app, 1.0.1)",
     },
     ...options,
   });
@@ -28,10 +28,12 @@ export async function DiscordRequest(endpoint, options) {
 export async function InstallGlobalCommands(appId, commands) {
   // API endpoint to overwrite global commands
   const endpoint = `applications/${appId}/commands`;
+  const guildEndpoint = `applications/${appId}/guilds/1273283526220976151/commands`;
 
   try {
     // This is calling the bulk overwrite endpoint: https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands
     await DiscordRequest(endpoint, { method: "PUT", body: commands });
+    await DiscordRequest(guildEndpoint, { method: "PUT", body: commands });
   } catch (err) {
     console.error(err);
   }
@@ -97,10 +99,10 @@ export const getRandomPsalm = async (translation = "deu_sch", book = "PSA") => {
   const randomChapter = randomNumber(150);
 
   const PsalmData = await fetch(
-    `https://bible.helloao.org/api/${translation}/${book}/${randomChapter}`
+    `https://bible.helloao.org/api/${translation}/${book}/${randomChapter}.json`
   ).then((res) => res.json());
 
-  let displayMessage = `${PsalmData.book.commonName} ${randomChapter}:`;
+  let displayMessage = `${PsalmData.book.commonName} ${randomChapter} `;
 
   for (const verse of PsalmData.chapter.content) {
     displayMessage += `[${verse.number}]${verse.content.join(" ")} `;

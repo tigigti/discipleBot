@@ -48,6 +48,7 @@ app.post(
         });
       }
 
+      // "Psalm" command
       if (name === "psalm") {
         const psalm = await getRandomPsalm();
         return res.send({
