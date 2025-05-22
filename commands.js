@@ -43,6 +43,6 @@ const TEST_COMMAND = {
   contexts: [0, 1, 2],
 };
 
-const ALL_COMMANDS = [TEST_COMMAND, VERSE_COMMAND, VERSE_COMMAND];
+const ALL_COMMANDS = [TEST_COMMAND, VERSE_COMMAND, PSALM_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
